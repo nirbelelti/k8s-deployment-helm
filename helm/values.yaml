@@ -1,0 +1,17 @@
+appFullName: helm-kubernetes-demo
+appName: 'nginx-demo'
+namespace: demo-namespace
+dockerUsername: my-username # Change this to your Docker username
+version: latest
+image: 'nginx:latest' # Change this to the image you want to use
+containerPort: 8089
+ingress:
+  enabled: true
+  hosts:
+    - host: example.com
+      paths:
+        - /
+service:
+    type: NodePort
+    port: 8080
+    targetPort: 8080
