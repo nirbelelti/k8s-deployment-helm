@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Values.appName }}-deployment'
+  namespace: '{{ .Values.namespace }}'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: '{{ .Values.appName }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ .Values.appName }}'
+    spec:
+      containers:
+        - name: '{{ .Values.appName }}'
+          image: '{{ .Values.image}}'
+          ports:
+            - containerPort: {{.Values.containerPort}}
+          # Add any required environment variables or configurations here
+      imagePullSecrets:
+        - name: default-secret
